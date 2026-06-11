@@ -1,0 +1,217 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════
+   StoreHub Design System
+   Palette: Deep navy + Electric indigo + Amber gold
+════════════════════════════════════════════════ */
+
+@theme {
+  /* Brand colors */
+  --color-brand-50:  #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+  --color-brand-950: #1e1b4b;
+
+  /* Gold accent */
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+
+  /* Emerald */
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+
+  /* Backgrounds */
+  --color-space-950: #04060f;
+  --color-space-900: #070c1a;
+  --color-space-800: #0b1225;
+  --color-space-700: #111827;
+
+  /* Font families */
+  --font-arabic: "Cairo", "Tajawal", system-ui, sans-serif;
+  --font-sans:   "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Radius */
+  --radius-sm:  0.375rem;
+  --radius-md:  0.75rem;
+  --radius-lg:  1rem;
+  --radius-xl:  1.5rem;
+  --radius-2xl: 2rem;
+}
+
+/* ═══════════════════════════════════════════════
+   Google Fonts
+════════════════════════════════════════════════ */
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/* ═══════════════════════════════════════════════
+   Base Reset
+════════════════════════════════════════════════ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* RTL default for Arabic locale */
+  [lang="ar"] {
+    font-family: var(--font-arabic);
+    direction: rtl;
+  }
+
+  [lang="en"] {
+    font-family: var(--font-sans);
+    direction: ltr;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: #04060f;
+    color: #f1f5f9;
+  }
+
+  ::selection {
+    background-color: #4f46e5;
+    color: white;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0b1225;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #4f46e5;
+    border-radius: 3px;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Utility Classes
+════════════════════════════════════════════════ */
+@layer utilities {
+  .gradient-brand {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #9333ea 100%);
+  }
+
+  .gradient-gold {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #818cf8, #c084fc, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-gold {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b, #d97706);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+  }
+
+  .glass-brand {
+    background: rgba(79, 70, 229, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    backdrop-filter: blur(12px);
+  }
+
+  .glow-brand {
+    box-shadow: 0 0 40px rgba(79, 70, 229, 0.35),
+                0 0 80px rgba(79, 70, 229, 0.15);
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 40px rgba(245, 158, 11, 0.35);
+  }
+
+  /* Noise texture overlay */
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  /* Animated gradient background */
+  .animated-bg {
+    background: linear-gradient(-45deg, #04060f, #0b1225, #111827, #1e1b4b);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Float animation */
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%       { transform: translateY(-12px); }
+  }
+
+  /* Pulse glow */
+  .pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.7; }
+  }
+
+  /* Fade in up */
+  .fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   Store front (light theme)
+════════════════════════════════════════════════ */
+.store-theme {
+  background-color: #f8fafc;
+  color: #0f172a;
+  font-family: var(--font-arabic);
+}
+
+.store-theme [lang="en"] {
+  font-family: var(--font-sans);
+}
