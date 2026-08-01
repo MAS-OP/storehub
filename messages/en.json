@@ -1,0 +1,195 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "demo": "Live Demo",
+    "login": "Sign In",
+    "start": "Get Started"
+  },
+  "hero": {
+    "badge": "#1 Store Builder Platform",
+    "title": "Your online store",
+    "titleHighlight": "in minutes, yours forever",
+    "subtitle": "Build a professional online store that rivals the big platforms. One-time payment — no subscriptions, no monthly fees, no commitments.",
+    "ctaPrimary": "Build Your Store Now",
+    "ctaSecondary": "See How It Works",
+    "trustBadge": "✓ Pay once — own forever",
+    "stats": {
+      "stores": "active stores",
+      "orders": "monthly orders",
+      "merchants": "merchants trust us",
+      "uptime": "uptime"
+    }
+  },
+  "features": {
+    "title": "Everything your online store needs",
+    "subtitle": "A complete platform with all the tools to build and run a professional store with ease",
+    "items": {
+      "easy": {
+        "title": "Incredibly Easy Setup",
+        "desc": "Three steps and your store is ready to sell. No technical experience needed."
+      },
+      "accounting": {
+        "title": "Integrated Accounting",
+        "desc": "Track your sales, expenses, and profits in one place with clear reports."
+      },
+      "analytics": {
+        "title": "Smart Analytics",
+        "desc": "Know who visits your store and what they buy to make data-driven decisions."
+      },
+      "ai": {
+        "title": "AI Assistant",
+        "desc": "A dedicated AI assistant for each store to answer customer questions and help them shop."
+      },
+      "delivery": {
+        "title": "Multiple Delivery Options",
+        "desc": "Add delivery methods that work for you, local or international, with flexible pricing."
+      },
+      "channels": {
+        "title": "Multiple Sales Channels",
+        "desc": "Sell through your store, WhatsApp, Snapchat, and all social media platforms."
+      }
+    }
+  },
+  "howItWorks": {
+    "title": "Three steps and you're ready to sell",
+    "subtitle": "The easiest way to own a professional online store",
+    "steps": {
+      "1": {
+        "title": "Register & Create Your Store",
+        "desc": "Enter your store name and choose your design in under 2 minutes"
+      },
+      "2": {
+        "title": "Add Your Products",
+        "desc": "Add your products with photos, prices, and descriptions easily"
+      },
+      "3": {
+        "title": "Start Selling",
+        "desc": "Your store is ready on your custom link. Start promoting and selling immediately"
+      }
+    }
+  },
+  "pricing": {
+    "badge": "Simplest & Fairest",
+    "title": "Pay once, own forever",
+    "subtitle": "No subscriptions, no hidden fees, no surprises at month end",
+    "oneTime": "One-time payment only",
+    "currency": "SAR",
+    "includes": "What's included?",
+    "features": [
+      "Full professional online store",
+      "Unlimited product management",
+      "Orders & accounting system",
+      "Detailed analytics & statistics",
+      "Custom AI assistant",
+      "Custom subdomain for your store",
+      "Arabic & English support (RTL)",
+      "Free updates forever",
+      "24/7 technical support"
+    ],
+    "cta": "Get Started Now",
+    "note": "30-day money-back guarantee if you're not satisfied"
+  },
+  "testimonials": {
+    "title": "What our merchants say",
+    "subtitle": "Thousands of people have built their stores and changed their lives"
+  },
+  "cta": {
+    "title": "Ready to build your store?",
+    "subtitle": "Join thousands of merchants who chose freedom from subscriptions",
+    "button": "Build Your Store Now — Pay Once",
+    "note": "No credit card required to try the platform"
+  },
+  "footer": {
+    "tagline": "Real ownership. Total freedom.",
+    "links": {
+      "product": "Product",
+      "features": "Features",
+      "pricing": "Pricing",
+      "demo": "Live Demo",
+      "company": "Company",
+      "about": "About Us",
+      "blog": "Blog",
+      "support": "Support",
+      "legal": "Legal",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Use"
+    },
+    "rights": "All rights reserved"
+  },
+  "create": {
+    "title": "Create Your Store Now",
+    "subtitle": "Three simple steps and you'll be ready to sell",
+    "step1": {
+      "title": "Store Information",
+      "storeName": "Store Name",
+      "storeNameAr": "Store Name in Arabic",
+      "subdomain": "Store URL",
+      "subdomainHint": "Your store URL will be: {subdomain}.storehub.sa",
+      "category": "Store Category",
+      "next": "Next"
+    },
+    "step2": {
+      "title": "Store Identity",
+      "color": "Primary Color",
+      "logo": "Store Logo",
+      "logoHint": "Optional — you can add it later",
+      "next": "Next",
+      "back": "Back"
+    },
+    "step3": {
+      "title": "Ready to Launch!",
+      "creating": "Building your store...",
+      "success": "Your store was created successfully! 🎉",
+      "goToAdmin": "Go to Dashboard",
+      "back": "Back"
+    }
+  },
+  "store": {
+    "all": "All",
+    "products": "Products",
+    "addToCart": "Add to Cart",
+    "buyNow": "Buy Now",
+    "outOfStock": "Out of Stock",
+    "cart": "Cart",
+    "emptyCart": "Your cart is empty",
+    "checkout": "Checkout",
+    "total": "Total",
+    "orderPlaced": "Your order was received! 🎉",
+    "continueShopping": "Continue Shopping",
+    "aiHelper": "Store Assistant",
+    "aiPlaceholder": "Ask me anything about the products..."
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "products": "Products",
+    "orders": "Orders",
+    "analytics": "Analytics",
+    "accounting": "Accounting",
+    "settings": "Settings",
+    "ai": "AI Assistant",
+    "totalRevenue": "Total Revenue",
+    "totalOrders": "Total Orders",
+    "totalProducts": "Total Products",
+    "totalCustomers": "Total Customers",
+    "recentOrders": "Recent Orders",
+    "topProducts": "Best Selling Products",
+    "addProduct": "Add Product",
+    "editProduct": "Edit Product",
+    "deleteProduct": "Delete Product",
+    "productName": "Product Name",
+    "productPrice": "Price",
+    "productStock": "Stock",
+    "productStatus": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "pending": "Pending",
+    "confirmed": "Confirmed",
+    "processing": "Processing",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled",
+    "viewStore": "View Store",
+    "logout": "Sign Out"
+  }
+}
