@@ -1,6 +1,6 @@
 import { createClient } from "@/supabase/client";
-import type { Json } from "@/supabase/types";
 import type { StoreSection, SectionType, SectionConfigMap } from "./types";
+import { toJson } from "./json";
 
 export async function getPublicSections(storeId: string): Promise<StoreSection[]> {
   const supabase = createClient();
@@ -39,7 +39,7 @@ export async function createSection<T extends SectionType>(
     .insert({
       store_id: storeId,
       type,
-      config: config as unknown as Json,
+      config: toJson(config),
       position,
       is_active: true,
     })
@@ -57,7 +57,7 @@ export async function updateSectionConfig<T extends SectionType>(
   const supabase = createClient();
   const { error } = await supabase
     .from("store_sections")
-    .update({ config: config as unknown as Json })
+    .update({ config: toJson(config) })
     .eq("id", id);
   if (error) throw error;
 }
@@ -78,12 +78,16 @@ export async function deleteSection(id: string): Promise<void> {
 }
 
 export async function reorderSections(
+  storeId: string,
   updates: { id: string; position: number }[]
-): Promise<void> {
+): Promise<{ ok: true } | { ok: false; error: string }> {
   const supabase = createClient();
-  await Promise.all(
-    updates.map(({ id, position }) =>
-      supabase.from("store_sections").update({ position }).eq("id", id)
-    )
-  );
+  const { error } = await supabase.rpc("update_section_positions", {
+    p_store_id: storeId,
+    p_positions: toJson(updates),
+  });
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+  return { ok: true };
 }

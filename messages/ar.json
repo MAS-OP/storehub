@@ -190,6 +190,45 @@
     "delivered": "تم التسليم",
     "cancelled": "ملغي",
     "viewStore": "عرض المتجر",
-    "logout": "تسجيل الخروج"
+    "logout": "تسجيل الخروج",
+    "sections": {
+      "inspector": {
+        "editSection": "تعديل القسم",
+        "selectSection": "اختر قسمًا من القائمة لتعديله",
+        "noSchemaYet": "تحرير هذا النوع من الأقسام غير متاح بعد",
+        "close": "إغلاق",
+        "save": "حفظ",
+        "saving": "جارٍ الحفظ...",
+        "saved": "تم الحفظ",
+        "saveFailed": "تعذر الحفظ",
+        "arabic": "عربي",
+        "english": "إنجليزي",
+        "addBlock": "إضافة",
+        "removeBlock": "حذف",
+        "duplicateBlock": "تكرار",
+        "emptyBlocks": "لا توجد عناصر بعد",
+        "dragToReorder": "سحب لإعادة الترتيب",
+        "fields": {
+          "slides": "الشرائح",
+          "autoplay_ms": "مدة التبديل التلقائي (مللي ثانية)",
+          "heading": "العنوان",
+          "cards": "البطاقات",
+          "title": "العنوان",
+          "subtitle": "العنوان الفرعي",
+          "ends_at": "تاريخ الانتهاء",
+          "href": "الرابط",
+          "background_style": "نمط الخلفية",
+          "image_url": "رابط الصورة",
+          "cta_label": "نص الزر",
+          "cta_href": "رابط الزر",
+          "badge": "الشارة",
+          "discount_percent": "نسبة الخصم %"
+        },
+        "backgroundStyleOptions": {
+          "accent": "لون مميز",
+          "gradient": "تدرّج"
+        }
+      }
+    }
   }
 }

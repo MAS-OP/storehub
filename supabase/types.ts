@@ -262,7 +262,15 @@ export interface Database {
       };
     };
     Views: Record<string, never>;
-    Functions: Record<string, never>;
+    Functions: {
+      update_section_positions: {
+        Args: {
+          p_store_id: string;
+          p_positions: Json;
+        };
+        Returns: void;
+      };
+    };
     Enums: Record<string, never>;
   };
 }

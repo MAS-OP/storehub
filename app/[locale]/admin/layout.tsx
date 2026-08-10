@@ -4,7 +4,7 @@ import Link from "next/link";
 import {
   Store, LayoutDashboard, Package, ShoppingBag,
   BarChart3, Calculator, Settings, Bot,
-  ExternalLink, LogOut, Plug, Bell,
+  ExternalLink, LogOut, Plug, Bell, LayoutTemplate,
 } from "lucide-react";
 
 type Props = {
@@ -39,6 +39,7 @@ export default async function AdminLayout({ children, params }: Props) {
   const navItems = [
     { href: `/${locale}/admin`,              icon: LayoutDashboard, label: isAr ? "لوحة التحكم"      : "Dashboard" },
     { href: `/${locale}/admin/products`,     icon: Package,         label: isAr ? "المنتجات"          : "Products" },
+    { href: `/${locale}/admin/sections`,     icon: LayoutTemplate,  label: isAr ? "أقسام المتجر"      : "Sections" },
     { href: `/${locale}/admin/orders`,       icon: ShoppingBag,     label: isAr ? "الطلبات"           : "Orders" },
     { href: `/${locale}/admin/analytics`,    icon: BarChart3,       label: isAr ? "التحليلات"         : "Analytics" },
     { href: `/${locale}/admin/accounting`,   icon: Calculator,      label: isAr ? "المحاسبة"          : "Accounting" },
@@ -56,9 +57,9 @@ export default async function AdminLayout({ children, params }: Props) {
   return (
     <div className="flex min-h-screen" dir={isAr ? "rtl" : "ltr"}>
       {/* ── Sidebar ── */}
-      <aside className="w-64 glass border-e border-white/5 flex flex-col fixed inset-y-0 start-0 z-30">
+      <aside className="w-64 glass border-e border-border flex flex-col fixed inset-y-0 start-0 z-30">
         {/* هوية المتجر */}
-        <div className="p-5 border-b border-white/5">
+        <div className="p-5 border-b border-border">
           <div className="flex items-center gap-3">
             <div
               className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
@@ -72,10 +73,10 @@ export default async function AdminLayout({ children, params }: Props) {
               )}
             </div>
             <div className="min-w-0">
-              <p className="text-sm font-semibold text-white truncate">
+              <p className="text-sm font-semibold text-foreground truncate">
                 {isAr ? (store.name_ar ?? store.name) : store.name}
               </p>
-              <p className="text-xs text-slate-400 truncate">{store.subdomain}.storehub.sa</p>
+              <p className="text-xs text-muted-foreground truncate">{store.subdomain}.storehub.sa</p>
             </div>
           </div>
         </div>
@@ -88,7 +89,7 @@ export default async function AdminLayout({ children, params }: Props) {
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-300 hover:text-white hover:bg-white/5 transition-all group"
+                className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-all group"
               >
                 <Icon className="w-4 h-4 flex-shrink-0 group-hover:text-indigo-400 transition-colors" />
                 <span className="flex-1">{item.label}</span>
@@ -103,12 +104,12 @@ export default async function AdminLayout({ children, params }: Props) {
         </nav>
 
         {/* تذييل */}
-        <div className="p-3 border-t border-white/5 space-y-0.5">
+        <div className="p-3 border-t border-border space-y-0.5">
           <a
             href={`https://${store.subdomain}.storehub.sa`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-400 hover:text-white hover:bg-white/5 transition-all"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-foreground/5 transition-all"
           >
             <ExternalLink className="w-4 h-4" />
             {isAr ? "عرض المتجر" : "View store"}
@@ -116,7 +117,7 @@ export default async function AdminLayout({ children, params }: Props) {
           <form action="/api/auth/signout" method="POST">
             <button
               type="submit"
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-slate-400 hover:text-red-400 hover:bg-red-500/5 transition-all"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted-foreground hover:text-red-400 hover:bg-red-500/5 transition-all"
             >
               <LogOut className="w-4 h-4" />
               {isAr ? "تسجيل الخروج" : "Sign out"}

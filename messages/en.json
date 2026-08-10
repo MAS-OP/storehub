@@ -190,6 +190,45 @@
     "delivered": "Delivered",
     "cancelled": "Cancelled",
     "viewStore": "View Store",
-    "logout": "Sign Out"
+    "logout": "Sign Out",
+    "sections": {
+      "inspector": {
+        "editSection": "Edit section",
+        "selectSection": "Select a section from the list to edit it",
+        "noSchemaYet": "Editing this section type isn't available yet",
+        "close": "Close",
+        "save": "Save",
+        "saving": "Saving...",
+        "saved": "Saved",
+        "saveFailed": "Failed to save",
+        "arabic": "Arabic",
+        "english": "English",
+        "addBlock": "Add",
+        "removeBlock": "Remove",
+        "duplicateBlock": "Duplicate",
+        "emptyBlocks": "No items yet",
+        "dragToReorder": "Drag to reorder",
+        "fields": {
+          "slides": "Slides",
+          "autoplay_ms": "Autoplay interval (ms)",
+          "heading": "Heading",
+          "cards": "Cards",
+          "title": "Title",
+          "subtitle": "Subtitle",
+          "ends_at": "Ends at",
+          "href": "Link",
+          "background_style": "Background style",
+          "image_url": "Image URL",
+          "cta_label": "Button label",
+          "cta_href": "Button link",
+          "badge": "Badge",
+          "discount_percent": "Discount %"
+        },
+        "backgroundStyleOptions": {
+          "accent": "Accent",
+          "gradient": "Gradient"
+        }
+      }
+    }
   }
 }

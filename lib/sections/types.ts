@@ -1,3 +1,23 @@
+// hero_banner, promo_carousel, and countdown_offer config shapes are defined
+// once, in schemas.ts (Zod), and re-exported here — see lib/sections/schemas.ts.
+// category_grid, product_grid, and testimonials have no renderer yet, so they
+// stay hand-written until a schema is added for them.
+import type {
+  HeroBannerSlide,
+  HeroBannerConfig,
+  PromoCarouselCard,
+  PromoCarouselConfig,
+  CountdownOfferConfig,
+} from "./schemas";
+
+export type {
+  HeroBannerSlide,
+  HeroBannerConfig,
+  PromoCarouselCard,
+  PromoCarouselConfig,
+  CountdownOfferConfig,
+};
+
 export type SectionType =
   | "hero_banner"
   | "promo_carousel"
@@ -5,41 +25,6 @@ export type SectionType =
   | "product_grid"
   | "countdown_offer"
   | "testimonials";
-
-export interface HeroBannerSlide {
-  id: string;
-  image_url: string;
-  title_ar: string;
-  title_en: string;
-  subtitle_ar: string;
-  subtitle_en: string;
-  cta_label_ar: string;
-  cta_label_en: string;
-  cta_href: string;
-}
-
-export interface HeroBannerConfig {
-  slides: HeroBannerSlide[];
-  autoplay_ms: number;
-}
-
-export interface PromoCarouselCard {
-  id: string;
-  image_url: string;
-  title_ar: string;
-  title_en: string;
-  badge_ar: string | null;
-  badge_en: string | null;
-  discount_percent: number | null;
-  ends_at: string | null;
-  href: string;
-}
-
-export interface PromoCarouselConfig {
-  heading_ar: string;
-  heading_en: string;
-  cards: PromoCarouselCard[];
-}
 
 export interface CategoryGridConfig {
   heading_ar: string;
@@ -54,16 +39,6 @@ export interface ProductGridConfig {
   product_ids: string[];
   category_id: string | null;
   limit: number;
-}
-
-export interface CountdownOfferConfig {
-  title_ar: string;
-  title_en: string;
-  subtitle_ar: string;
-  subtitle_en: string;
-  ends_at: string;
-  href: string;
-  background_style: "accent" | "gradient";
 }
 
 export interface TestimonialItem {
