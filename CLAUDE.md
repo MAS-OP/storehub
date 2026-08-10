@@ -116,3 +116,17 @@ Tailwind v4 (CSS-first config via `@theme inline` in `app/globals.css` — no `t
 table above to reflect what was actually built — mark rows done/not-done,
 note any deviation from spec (a type swapped, a step skipped). Do this
 without being asked.
+
+## Decision log
+- 10 Aug 2026: Landing page settled — keeping the existing ParticleBackground
+  + terracotta design (already same stack, already working). Axon dropped
+  permanently. If app/[locale]/preview/axon exists, it's dead code — delete it.
+  Remaining real task on the landing page: replace placeholder stats/testimonials
+  before any real launch.
+
+## Decision log (correction — same day)
+- 10 Aug 2026, later: REVERSED the entry above. Actually want the Axon
+  identity built — implement it tomorrow BEFORE Phase 4. Silver lining:
+  /preview/axon was confirmed never built (real 404 from inside the
+  Codespace), so there's no dead code to clean up from the earlier attempt —
+  tomorrow's build starts clean, not on top of a half-built preview.
