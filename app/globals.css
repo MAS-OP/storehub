@@ -97,6 +97,7 @@
 
   --font-arabic: "Cairo", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
 }
 
 @layer base {
