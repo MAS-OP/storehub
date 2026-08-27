@@ -33,6 +33,7 @@
     "@types/node": "^22.15.0",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "supabase": "^2.116.0",
     "tailwindcss": "^4.1.6",
     "typescript": "^5.8.3"
   },
