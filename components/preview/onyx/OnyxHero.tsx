@@ -33,11 +33,6 @@ export default function OnyxHero(): React.JSX.Element {
   const locale = useLocale();
   const isAr = locale === "ar";
 
-  // Headline is split into three staggered words per locale.
-  const words = isAr
-    ? ["متجرك", "الإلكتروني", "تملكه للأبد"]
-    : ["own", "your", "store"];
-
   return (
     <section
       dir={isAr ? "rtl" : "ltr"}
@@ -69,7 +64,7 @@ export default function OnyxHero(): React.JSX.Element {
 
         <span className="flex items-center gap-2">
           <Link
-            href={isAr ? "/en/preview/onyx" : "/preview/onyx"}
+            href={isAr ? "/en/preview/onyx" : "/ar/preview/onyx"}
             className="rounded-full bg-neutral-900/90 px-4 py-3 text-xs text-neutral-300 backdrop-blur transition-colors hover:text-white"
           >
             {isAr ? "EN" : "AR"}
@@ -85,19 +80,54 @@ export default function OnyxHero(): React.JSX.Element {
 
       {/* Foreground */}
       <div className="relative h-full w-full">
-        <h1 className="onyx-title absolute top-[18%] start-4 text-[14vw] font-medium text-white md:start-10 md:text-[13vw]">
-          {words[0]}
-        </h1>
-        <h1 className="onyx-title absolute top-[38%] end-4 text-[14vw] font-medium text-white md:end-10 md:text-[13vw]">
-          {words[1]}
-        </h1>
-        <h1 className="onyx-title absolute top-[58%] start-[18%] text-[14vw] font-medium text-white md:start-[28%] md:text-[13vw]">
-          {words[2]}
-        </h1>
+        <div className="group absolute inset-y-0 start-6 z-10 flex max-w-xl flex-col justify-center gap-5 md:start-10">
+          <h1 className="text-5xl font-medium leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl">
+            {isAr ? (
+              <>
+                متجرك الإلكتروني
+                <br />
+                تمتلكه للأبد
+              </>
+            ) : (
+              <>
+                Own your
+                <br />
+                store
+              </>
+            )}
+          </h1>
 
-        <p className="absolute top-[46%] start-6 z-10 max-w-[280px] text-[15px] leading-snug text-white/90 md:start-10">
-          {t("hero.subtitle")}
-        </p>
+          <div className="flex items-center gap-6 opacity-100 transition-opacity duration-500 motion-safe:opacity-0 motion-safe:group-hover:opacity-100">
+            <span className="flex items-center gap-2 text-xs text-white/70">
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <path
+                  d="M14.7 6.3a4 4 0 1 0-3.4 6.1L4 19.7V22h2.3l7.3-7.3a4 4 0 0 0 1.1-8.4Z"
+                  stroke="#ffffff"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {isAr ? "امتلاك حقيقي" : "Real ownership"}
+            </span>
+            <span className="flex items-center gap-2 text-xs text-white/70">
+              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
+                <path
+                  d="M18.5 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-9 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm2 0h3"
+                  stroke="#ffffff"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {isAr ? "استقلالية كاملة" : "Full independence"}
+            </span>
+          </div>
+
+          <p className="max-w-[280px] text-[15px] leading-snug text-white/90">
+            {t("hero.subtitle")}
+          </p>
+        </div>
 
         {/* Stat — top end */}
         <div className="absolute top-[14%] end-6 z-10 md:end-24">

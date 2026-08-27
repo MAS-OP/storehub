@@ -230,5 +230,27 @@
         }
       }
     }
+  },
+  "OnyxHowItWorks": {
+    "eyebrow": "How it works",
+    "heading": "From idea to first sale",
+    "steps": {
+      "create": {
+        "title": "Create your store",
+        "description": "Pick your subdomain and store identity in minutes."
+      },
+      "products": {
+        "title": "Add your products",
+        "description": "Upload your products, categories, and delivery options."
+      },
+      "storefront": {
+        "title": "Choose your storefront",
+        "description": "Design your page from ready sections you can freely reorder."
+      },
+      "launch": {
+        "title": "Go live and get paid",
+        "description": "Enable mada, Visa, and Apple Pay, and start selling instantly."
+      }
+    }
   }
 }

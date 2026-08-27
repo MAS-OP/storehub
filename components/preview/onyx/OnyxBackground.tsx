@@ -47,15 +47,26 @@ export default function OnyxBackground(): React.JSX.Element {
 
     const seed = (): void => {
       streaks.length = 0;
-      const count = isTouch ? 14 : 30;
+      const count = isTouch ? 14 : 42;
+      // Reserve a fixed slice specifically for the central band (35%-65% of
+      // width) so the middle of the screen can never end up empty by
+      // chance -- uniform random seeding alone occasionally leaves visible
+      // gaps there, which is what the previous, lower streak count showed.
+      const centralReserve = isTouch ? 0 : 8;
+
       for (let i = 0; i < count; i++) {
         const depth = 0.2 + Math.random() * 0.8;
+        const inCentralBand = i < centralReserve;
+        const x = inCentralBand
+          ? width * 0.35 + Math.random() * width * 0.3
+          : Math.random() * width * 1.4 - width * 0.2;
+
         streaks.push({
-          x: Math.random() * width * 1.4 - width * 0.2,
+          x,
           y: Math.random() * height * 1.4 - height * 0.2,
           len: (60 + Math.random() * 260) * depth,
           speed: (0.12 + Math.random() * 0.4) * depth,
-          alpha: (0.06 + Math.random() * 0.22) * depth,
+          alpha: (0.1 + Math.random() * 0.22) * depth,
           depth,
           width: depth < 0.5 ? 1 : 1.6,
         });
