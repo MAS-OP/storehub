@@ -195,7 +195,7 @@ export default function IntegrationsPage() {
     await save(type, name, current.config, !current.is_active);
   }
 
-  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 md:p-8 max-w-4xl" dir={isAr ? "rtl" : "ltr"}>
@@ -207,11 +207,11 @@ export default function IntegrationsPage() {
       )}
 
       <div className="mb-8">
-        <h1 className="text-2xl font-black text-white flex items-center gap-2">
-          <Plug className="w-7 h-7 text-indigo-400" />
+        <h1 className="text-2xl font-black text-foreground flex items-center gap-2">
+          <Plug className="w-7 h-7 text-accent" />
           {isAr ? "الموصلات والتكاملات" : "Integrations"}
         </h1>
-        <p className="text-slate-400 text-sm mt-1">
+        <p className="text-muted-foreground text-sm mt-1">
           {isAr ? "ربط متجرك بخدمات الدفع والتوصيل والتواصل الاجتماعي" : "Connect your store to payment, delivery, and social services"}
         </p>
       </div>
@@ -219,7 +219,7 @@ export default function IntegrationsPage() {
       <div className="space-y-8">
         {CATEGORIES.map((cat) => (
           <div key={cat.key}>
-            <h2 className="text-base font-semibold text-white mb-4">{isAr ? cat.label : cat.labelEn}</h2>
+            <h2 className="text-base font-semibold text-foreground mb-4">{isAr ? cat.label : cat.labelEn}</h2>
             <div className="space-y-3">
               {cat.items.map((item) => {
                 const current = data[item.type] ?? { is_active: false, config: {} };
@@ -234,20 +234,20 @@ export default function IntegrationsPage() {
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
-                          <span className="text-sm font-semibold text-white">{isAr ? item.nameAr : item.name}</span>
+                          <span className="text-sm font-semibold text-foreground">{isAr ? item.nameAr : item.name}</span>
                           {current.is_active && (
                             <span className="px-2 py-0.5 rounded-full text-xs bg-emerald-500/15 text-emerald-400 border border-emerald-500/20">
                               {isAr ? "مفعّل" : "Active"}
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-slate-400 mt-0.5 truncate">{item.desc}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5 truncate">{item.desc}</p>
                       </div>
                       <div className="flex items-center gap-2 flex-shrink-0">
                         <button
                           onClick={() => toggleActive(item.type, item.nameAr)}
                           disabled={saving === item.type}
-                          className={`w-10 h-6 rounded-full transition-colors flex items-center px-0.5 ${current.is_active ? "bg-emerald-500" : "bg-white/10"}`}
+                          className={`w-10 h-6 rounded-full transition-colors flex items-center px-0.5 ${current.is_active ? "bg-emerald-500" : "bg-input"}`}
                         >
                           {saving === item.type ? (
                             <Loader2 className="w-4 h-4 animate-spin text-white mx-auto" />
@@ -255,7 +255,7 @@ export default function IntegrationsPage() {
                             <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform ${current.is_active ? "translate-x-4" : "translate-x-0"}`} />
                           )}
                         </button>
-                        <button onClick={() => setExpanded(isOpen ? null : item.type)} className="p-1 text-slate-400 hover:text-white">
+                        <button onClick={() => setExpanded(isOpen ? null : item.type)} className="p-1 text-muted-foreground hover:text-foreground">
                           {isOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                         </button>
                       </div>
@@ -293,17 +293,17 @@ function IntegrationForm({ item, current, saving, isAr, onSave }: {
   const [config, setConfig] = useState<Record<string, string>>(current.config);
 
   return (
-    <div className="px-4 pb-4 border-t border-white/5 pt-4 space-y-3">
+    <div className="px-4 pb-4 border-t border-border pt-4 space-y-3">
       {item.fields.map((field) => (
         <div key={field.key}>
-          <label className="block text-xs font-medium text-slate-400 mb-1.5">{field.label}</label>
+          <label className="block text-xs font-medium text-muted-foreground mb-1.5">{field.label}</label>
           <input
             type={field.secret ? "password" : "text"}
             value={config[field.key] ?? ""}
             onChange={(e) => setConfig(prev => ({ ...prev, [field.key]: e.target.value }))}
             placeholder={field.placeholder}
             dir="ltr"
-            className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-indigo-500 transition-colors font-mono"
+            className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors font-mono"
           />
         </div>
       ))}

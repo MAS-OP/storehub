@@ -73,7 +73,7 @@ export default function SettingsPage() {
   const f = (field: keyof typeof form, val: string | boolean) =>
     setForm((p) => ({ ...p, [field]: val }));
 
-  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 md:p-8 max-w-2xl" dir={isAr ? "rtl" : "ltr"}>
@@ -84,56 +84,56 @@ export default function SettingsPage() {
         </div>
       )}
 
-      <h1 className="text-2xl font-black text-white mb-8">{isAr ? "إعدادات المتجر" : "Store settings"}</h1>
+      <h1 className="text-2xl font-black text-foreground mb-8">{isAr ? "إعدادات المتجر" : "Store settings"}</h1>
 
       <div className="space-y-6">
         {/* Section: Store info */}
         <section className="glass rounded-2xl p-6 space-y-4">
-          <h2 className="text-base font-semibold text-white mb-4">{isAr ? "معلومات المتجر" : "Store information"}</h2>
+          <h2 className="text-base font-semibold text-foreground mb-4">{isAr ? "معلومات المتجر" : "Store information"}</h2>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "الاسم بالعربية" : "Name (Arabic)"}</label>
-              <input value={form.name_ar} onChange={(e) => f("name_ar", e.target.value)} dir="rtl" className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "الاسم بالعربية" : "Name (Arabic)"}</label>
+              <input value={form.name_ar} onChange={(e) => f("name_ar", e.target.value)} dir="rtl" className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors" />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "الاسم بالإنجليزية" : "Name (English)"}</label>
-              <input value={form.name} onChange={(e) => f("name", e.target.value)} dir="ltr" required className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "الاسم بالإنجليزية" : "Name (English)"}</label>
+              <input value={form.name} onChange={(e) => f("name", e.target.value)} dir="ltr" required className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "وصف المتجر" : "Store description"}</label>
-            <textarea value={form.description_ar} onChange={(e) => f("description_ar", e.target.value)} dir="rtl" rows={2} className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors resize-none" placeholder={isAr ? "وصف قصير لمتجرك..." : "Short description..."} />
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "وصف المتجر" : "Store description"}</label>
+            <textarea value={form.description_ar} onChange={(e) => f("description_ar", e.target.value)} dir="rtl" rows={2} className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors resize-none" placeholder={isAr ? "وصف قصير لمتجرك..." : "Short description..."} />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "رقم الهاتف" : "Phone"}</label>
-              <input value={form.phone} onChange={(e) => f("phone", e.target.value)} dir="ltr" type="tel" className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="+966 5x xxx xxxx" />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "رقم الهاتف" : "Phone"}</label>
+              <input value={form.phone} onChange={(e) => f("phone", e.target.value)} dir="ltr" type="tel" className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors" placeholder="+966 5x xxx xxxx" />
             </div>
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "البريد الإلكتروني" : "Email"}</label>
-              <input value={form.email} onChange={(e) => f("email", e.target.value)} dir="ltr" type="email" className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="store@example.com" />
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "البريد الإلكتروني" : "Email"}</label>
+              <input value={form.email} onChange={(e) => f("email", e.target.value)} dir="ltr" type="email" className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors" placeholder="store@example.com" />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "رابط الشعار" : "Logo URL"}</label>
-            <input value={form.logo_url} onChange={(e) => f("logo_url", e.target.value)} dir="ltr" className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="https://..." />
+            <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "رابط الشعار" : "Logo URL"}</label>
+            <input value={form.logo_url} onChange={(e) => f("logo_url", e.target.value)} dir="ltr" className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors" placeholder="https://..." />
           </div>
         </section>
 
         {/* Section: Color */}
         <section className="glass rounded-2xl p-6">
-          <h2 className="text-base font-semibold text-white mb-4">{isAr ? "لون المتجر" : "Store color"}</h2>
+          <h2 className="text-base font-semibold text-foreground mb-4">{isAr ? "لون المتجر" : "Store color"}</h2>
           <div className="flex items-center gap-3 flex-wrap">
             {COLORS.map((c) => (
-              <button key={c} type="button" onClick={() => f("primary_color", c)} className={`w-9 h-9 rounded-xl transition-transform hover:scale-110 ${form.primary_color === c ? "ring-2 ring-white ring-offset-1 ring-offset-transparent scale-110" : ""}`} style={{ backgroundColor: c }} />
+              <button key={c} type="button" onClick={() => f("primary_color", c)} className={`w-9 h-9 rounded-xl transition-transform hover:scale-110 ${form.primary_color === c ? "ring-2 ring-foreground ring-offset-1 ring-offset-background scale-110" : ""}`} style={{ backgroundColor: c }} />
             ))}
-            <label className="w-9 h-9 rounded-xl border border-white/20 flex items-center justify-center cursor-pointer hover:border-white/40 transition-colors overflow-hidden relative">
+            <label className="w-9 h-9 rounded-xl border border-input flex items-center justify-center cursor-pointer hover:border-ring transition-colors overflow-hidden relative">
               <input type="color" value={form.primary_color} onChange={(e) => f("primary_color", e.target.value)} className="absolute inset-0 opacity-0 w-full h-full cursor-pointer" />
-              <span className="text-xs text-slate-400 pointer-events-none">+</span>
+              <span className="text-xs text-muted-foreground pointer-events-none">+</span>
             </label>
             <div className="ms-2 w-8 h-8 rounded-lg flex-shrink-0" style={{ backgroundColor: form.primary_color }} />
           </div>
@@ -143,26 +143,26 @@ export default function SettingsPage() {
         <section className="glass rounded-2xl p-6 space-y-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Bot className="w-5 h-5 text-indigo-400" />
-              <h2 className="text-base font-semibold text-white">{isAr ? "مساعد الذكاء الاصطناعي" : "AI Assistant"}</h2>
+              <Bot className="w-5 h-5 text-accent" />
+              <h2 className="text-base font-semibold text-foreground">{isAr ? "مساعد الذكاء الاصطناعي" : "AI Assistant"}</h2>
             </div>
-            <button type="button" onClick={() => f("ai_enabled", !form.ai_enabled)} className={`w-10 h-6 rounded-full transition-colors flex items-center px-0.5 ${form.ai_enabled ? "bg-indigo-500" : "bg-white/10"}`}>
+            <button type="button" onClick={() => f("ai_enabled", !form.ai_enabled)} className={`w-10 h-6 rounded-full transition-colors flex items-center px-0.5 ${form.ai_enabled ? "bg-accent" : "bg-input"}`}>
               <div className={`w-5 h-5 bg-white rounded-full shadow transition-transform ${form.ai_enabled ? "translate-x-4" : "translate-x-0"}`} />
             </button>
           </div>
 
           {form.ai_enabled && (
             <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "شخصية المساعد" : "Assistant personality"}</label>
+              <label className="block text-xs font-medium text-muted-foreground mb-1.5">{isAr ? "شخصية المساعد" : "Assistant personality"}</label>
               <textarea
                 value={form.ai_personality}
                 onChange={(e) => f("ai_personality", e.target.value)}
                 dir="rtl"
                 rows={3}
-                className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors resize-none"
+                className="w-full px-3 py-2.5 rounded-xl bg-muted border border-input text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors resize-none"
                 placeholder={isAr ? "مساعد متجر ودود ومحترف يساعد العملاء في إيجاد ما يحتاجونه..." : "A friendly and professional store assistant..."}
               />
-              <p className="text-xs text-slate-500 mt-1.5">{isAr ? "هذا النص يحدد كيف يتحدث المساعد مع عملائك" : "This text defines how the assistant speaks to your customers"}</p>
+              <p className="text-xs text-muted-foreground mt-1.5">{isAr ? "هذا النص يحدد كيف يتحدث المساعد مع عملائك" : "This text defines how the assistant speaks to your customers"}</p>
             </div>
           )}
         </section>

@@ -92,16 +92,16 @@ export default function AccountingPage() {
     a.click();
   }
 
-  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 md:p-8 max-w-5xl" dir={isAr ? "rtl" : "ltr"}>
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-black text-white">{isAr ? "المحاسبة" : "Accounting"}</h1>
-          <p className="text-slate-400 text-sm mt-1">{isAr ? "ملخص الإيرادات الشهري" : "Monthly revenue summary"}</p>
+          <h1 className="text-2xl font-black text-foreground">{isAr ? "المحاسبة" : "Accounting"}</h1>
+          <p className="text-muted-foreground text-sm mt-1">{isAr ? "ملخص الإيرادات الشهري" : "Monthly revenue summary"}</p>
         </div>
-        <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 rounded-xl glass text-slate-300 text-sm font-medium hover:text-white transition-colors">
+        <button onClick={exportCSV} className="flex items-center gap-2 px-4 py-2 rounded-xl glass text-muted-foreground text-sm font-medium hover:text-foreground transition-colors">
           <Download className="w-4 h-4" />
           {isAr ? "تصدير CSV" : "Export CSV"}
         </button>
@@ -110,13 +110,13 @@ export default function AccountingPage() {
       {/* Summary cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {[
-          { label: isAr ? "إجمالي الإيرادات" : "Total revenue", value: formatCurrency(totalRevenue, "SAR", isAr ? "ar-SA" : "en-US"), color: "text-emerald-400" },
-          { label: isAr ? "إجمالي الطلبات" : "Total orders", value: totalOrders.toLocaleString(), color: "text-white" },
-          { label: isAr ? "المسترجع" : "Refunded", value: formatCurrency(totalRefunds, "SAR", isAr ? "ar-SA" : "en-US"), color: "text-red-400" },
-          { label: isAr ? "الصافي" : "Net income", value: formatCurrency(totalNet, "SAR", isAr ? "ar-SA" : "en-US"), color: "text-indigo-400" },
+          { label: isAr ? "إجمالي الإيرادات" : "Total revenue", value: formatCurrency(totalRevenue, "SAR", isAr ? "ar-SA" : "en-US"), color: "text-emerald-600" },
+          { label: isAr ? "إجمالي الطلبات" : "Total orders", value: totalOrders.toLocaleString(), color: "text-foreground" },
+          { label: isAr ? "المسترجع" : "Refunded", value: formatCurrency(totalRefunds, "SAR", isAr ? "ar-SA" : "en-US"), color: "text-destructive" },
+          { label: isAr ? "الصافي" : "Net income", value: formatCurrency(totalNet, "SAR", isAr ? "ar-SA" : "en-US"), color: "text-accent" },
         ].map((c) => (
           <div key={c.label} className="glass rounded-2xl p-5">
-            <p className="text-xs text-slate-400 mb-1">{c.label}</p>
+            <p className="text-xs text-muted-foreground mb-1">{c.label}</p>
             <p className={`text-xl font-black ${c.color}`}>{c.value}</p>
           </div>
         ))}
@@ -125,14 +125,14 @@ export default function AccountingPage() {
       {/* Monthly table */}
       {rows.length === 0 ? (
         <div className="glass rounded-2xl p-16 text-center">
-          <Calculator className="w-12 h-12 text-slate-600 mx-auto mb-4" />
-          <p className="text-slate-400">{isAr ? "لا توجد بيانات بعد" : "No data yet"}</p>
+          <Calculator className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+          <p className="text-muted-foreground">{isAr ? "لا توجد بيانات بعد" : "No data yet"}</p>
         </div>
       ) : (
         <div className="glass rounded-2xl overflow-hidden">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-border">
                 {[
                   isAr ? "الشهر" : "Month",
                   isAr ? "الإيرادات" : "Revenue",
@@ -140,18 +140,18 @@ export default function AccountingPage() {
                   isAr ? "المسترجع" : "Refunded",
                   isAr ? "الصافي" : "Net",
                 ].map((h) => (
-                  <th key={h} className="px-5 py-3 text-start text-xs font-medium text-slate-400">{h}</th>
+                  <th key={h} className="px-5 py-3 text-start text-xs font-medium text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {rows.map((row) => (
-                <tr key={row.monthKey} className="border-b border-white/5 hover:bg-white/2 transition-colors">
-                  <td className="px-5 py-4 text-sm font-medium text-white">{row.label}</td>
-                  <td className="px-5 py-4 text-sm text-emerald-400 font-semibold">{formatCurrency(row.revenue, "SAR", isAr ? "ar-SA" : "en-US")}</td>
-                  <td className="px-5 py-4 text-sm text-slate-300">{row.orders}</td>
-                  <td className="px-5 py-4 text-sm text-red-400">{row.refunds > 0 ? formatCurrency(row.refunds, "SAR", isAr ? "ar-SA" : "en-US") : "—"}</td>
-                  <td className="px-5 py-4 text-sm font-bold text-white">{formatCurrency(row.net, "SAR", isAr ? "ar-SA" : "en-US")}</td>
+                <tr key={row.monthKey} className="border-b border-border hover:bg-foreground/5 transition-colors">
+                  <td className="px-5 py-4 text-sm font-medium text-foreground">{row.label}</td>
+                  <td className="px-5 py-4 text-sm text-emerald-600 font-semibold">{formatCurrency(row.revenue, "SAR", isAr ? "ar-SA" : "en-US")}</td>
+                  <td className="px-5 py-4 text-sm text-foreground">{row.orders}</td>
+                  <td className="px-5 py-4 text-sm text-destructive">{row.refunds > 0 ? formatCurrency(row.refunds, "SAR", isAr ? "ar-SA" : "en-US") : "—"}</td>
+                  <td className="px-5 py-4 text-sm font-bold text-foreground">{formatCurrency(row.net, "SAR", isAr ? "ar-SA" : "en-US")}</td>
                 </tr>
               ))}
             </tbody>

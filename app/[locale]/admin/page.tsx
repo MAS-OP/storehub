@@ -44,7 +44,6 @@ export default function AdminDashboard() {
 
     const storeId = store.id;
 
-    // Fetch stats in parallel
     const [ordersRes, productsRes, recentRes] = await Promise.all([
       supabase.from("orders").select("total, payment_status, customer_email").eq("store_id", storeId),
       supabase.from("products").select("*").eq("store_id", storeId).eq("is_active", true),
@@ -92,7 +91,7 @@ export default function AdminDashboard() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen">
-        <div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
       </div>
     );
   }
@@ -100,8 +99,8 @@ export default function AdminDashboard() {
   return (
     <div className="p-6 md:p-8 max-w-7xl" dir={isAr ? "rtl" : "ltr"}>
       <div className="mb-8">
-        <h1 className="text-2xl font-black text-white">{isAr ? "لوحة التحكم" : "Dashboard"}</h1>
-        <p className="text-slate-400 text-sm mt-1">{isAr ? "نظرة عامة على متجرك" : "Overview of your store"}</p>
+        <h1 className="text-2xl font-black text-foreground">{isAr ? "لوحة التحكم" : "Dashboard"}</h1>
+        <p className="text-muted-foreground text-sm mt-1">{isAr ? "نظرة عامة على متجرك" : "Overview of your store"}</p>
       </div>
 
       {/* Stats */}
@@ -113,8 +112,8 @@ export default function AdminDashboard() {
               <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${card.color} flex items-center justify-center mb-4`}>
                 <Icon className="w-5 h-5 text-white" />
               </div>
-              <p className="text-slate-400 text-xs mb-1">{card.label}</p>
-              <p className="text-2xl font-black text-white">{card.value}</p>
+              <p className="text-muted-foreground text-xs mb-1">{card.label}</p>
+              <p className="text-2xl font-black text-foreground">{card.value}</p>
             </div>
           );
         })}
@@ -122,16 +121,16 @@ export default function AdminDashboard() {
 
       {/* Recent orders */}
       <div className="glass rounded-2xl overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/5">
-          <h2 className="text-base font-semibold text-white">{isAr ? "آخر الطلبات" : "Recent orders"}</h2>
-          <a href={`/${locale}/admin/orders`} className="flex items-center gap-1 text-xs text-indigo-400 hover:text-indigo-300 transition-colors">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+          <h2 className="text-base font-semibold text-foreground">{isAr ? "آخر الطلبات" : "Recent orders"}</h2>
+          <a href={`/${locale}/admin/orders`} className="flex items-center gap-1 text-xs text-accent hover:text-accent/80 transition-colors">
             {isAr ? "عرض الكل" : "View all"} <ArrowUpRight className="w-3 h-3" />
           </a>
         </div>
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-white/5">
+              <tr className="border-b border-border">
                 {[
                   isAr ? "رقم الطلب" : "Order",
                   isAr ? "العميل" : "Customer",
@@ -139,22 +138,22 @@ export default function AdminDashboard() {
                   isAr ? "الحالة" : "Status",
                   isAr ? "التاريخ" : "Date",
                 ].map((h) => (
-                  <th key={h} className="px-6 py-3 text-start text-xs font-medium text-slate-400">{h}</th>
+                  <th key={h} className="px-6 py-3 text-start text-xs font-medium text-muted-foreground">{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {recentOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-slate-500 text-sm">
+                  <td colSpan={5} className="px-6 py-8 text-center text-muted-foreground text-sm">
                     {isAr ? "لا توجد طلبات بعد" : "No orders yet"}
                   </td>
                 </tr>
               ) : recentOrders.map((order) => (
-                <tr key={order.id} className="border-b border-white/5 hover:bg-white/2 transition-colors">
-                  <td className="px-6 py-4 text-sm font-mono text-slate-300">{order.order_number}</td>
-                  <td className="px-6 py-4 text-sm text-slate-300">{order.customer_name}</td>
-                  <td className="px-6 py-4 text-sm font-semibold text-white">
+                <tr key={order.id} className="border-b border-border hover:bg-foreground/5 transition-colors">
+                  <td className="px-6 py-4 text-sm font-mono text-foreground">{order.order_number}</td>
+                  <td className="px-6 py-4 text-sm text-foreground">{order.customer_name}</td>
+                  <td className="px-6 py-4 text-sm font-semibold text-foreground">
                     {formatCurrency(order.total, "SAR", isAr ? "ar-SA" : "en-US")}
                   </td>
                   <td className="px-6 py-4">
@@ -162,7 +161,7 @@ export default function AdminDashboard() {
                       {statusLabel[order.status] ?? order.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-xs text-slate-400">
+                  <td className="px-6 py-4 text-xs text-muted-foreground">
                     {formatDate(order.created_at, isAr ? "ar-SA" : "en-US")}
                   </td>
                 </tr>

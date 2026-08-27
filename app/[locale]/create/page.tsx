@@ -170,7 +170,7 @@ export default function CreatePage() {
       className="min-h-screen flex items-center justify-center px-4 py-12"
       dir={isAr ? "rtl" : "ltr"}
     >
-      <div className="fixed top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-600/10 rounded-full blur-[100px] pointer-events-none" />
+      <div className="fixed top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
 
       <div className="relative z-10 w-full max-w-lg">
         {/* Logo */}
@@ -179,15 +179,15 @@ export default function CreatePage() {
             <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center">
               <Store className="w-5 h-5 text-white" />
             </div>
-            <span className="text-lg font-bold text-white">StoreHub</span>
+            <span className="text-lg font-bold text-foreground">StoreHub</span>
           </Link>
 
           {step !== "done" && (
             <>
-              <h1 className="text-2xl font-black text-white mb-1">
+              <h1 className="text-2xl font-black text-foreground mb-1">
                 {isAr ? "أنشئ متجرك الآن" : "Create your store"}
               </h1>
-              <p className="text-slate-400 text-sm">
+              <p className="text-muted-foreground text-sm">
                 {isAr ? "ثلاث خطوات وتكون جاهزاً للبيع" : "Three steps and you're ready to sell"}
               </p>
             </>
@@ -201,7 +201,7 @@ export default function CreatePage() {
               <div
                 key={s}
                 className={`h-1.5 rounded-full transition-all ${
-                  i <= stepIndex ? "bg-indigo-500 w-8" : "bg-white/10 w-4"
+                  i <= stepIndex ? "bg-accent w-8" : "bg-input w-4"
                 }`}
               />
             ))}
@@ -216,13 +216,13 @@ export default function CreatePage() {
                 <div className="w-12 h-12 gradient-brand rounded-2xl flex items-center justify-center mx-auto mb-3">
                   <User className="w-6 h-6 text-white" />
                 </div>
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-lg font-bold text-foreground">
                   {isAr ? "أنشئ حسابك" : "Create your account"}
                 </h2>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {isAr ? "البريد الإلكتروني" : "Email"}
                 </label>
                 <input
@@ -231,13 +231,13 @@ export default function CreatePage() {
                   onChange={(e) => update("email", e.target.value)}
                   required
                   dir="ltr"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-muted border border-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
                   placeholder="you@email.com"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {isAr ? "كلمة المرور" : "Password"}
                 </label>
                 <input
@@ -246,13 +246,13 @@ export default function CreatePage() {
                   onChange={(e) => update("password", e.target.value)}
                   required
                   minLength={8}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-muted border border-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
                   placeholder="8+ characters"
                 />
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-4 py-3">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   {error}
                 </div>
@@ -268,9 +268,9 @@ export default function CreatePage() {
                 )}
               </button>
 
-              <p className="text-center text-sm text-slate-500">
+              <p className="text-center text-sm text-muted-foreground">
                 {isAr ? "لديك حساب؟ " : "Have an account? "}
-                <Link href={`/${locale}/login`} className="text-indigo-400 hover:text-indigo-300 font-medium">
+                <Link href={`/${locale}/login`} className="text-accent hover:text-accent/80 font-medium">
                   {isAr ? "تسجيل الدخول" : "Sign in"}
                 </Link>
               </p>
@@ -284,43 +284,43 @@ export default function CreatePage() {
                 <div className="w-12 h-12 gradient-brand rounded-2xl flex items-center justify-center mx-auto mb-3">
                   <Store className="w-6 h-6 text-white" />
                 </div>
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-lg font-bold text-foreground">
                   {isAr ? "معلومات متجرك" : "Store information"}
                 </h2>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {isAr ? "اسم المتجر" : "Store name"}
                 </label>
                 <input
                   value={form.storeName}
                   onChange={(e) => update("storeName", e.target.value)}
                   required
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-muted border border-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
                   placeholder={isAr ? "متجر العطور" : "My Awesome Store"}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {isAr ? "اسم المتجر بالعربية" : "Store name in Arabic"}
-                  <span className="text-slate-500 font-normal ms-2">{isAr ? "(اختياري)" : "(optional)"}</span>
+                  <span className="text-muted-foreground font-normal ms-2">{isAr ? "(اختياري)" : "(optional)"}</span>
                 </label>
                 <input
                   value={form.storeNameAr}
                   onChange={(e) => update("storeNameAr", e.target.value)}
                   dir="rtl"
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors"
+                  className="w-full px-4 py-3 rounded-xl bg-muted border border-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-ring transition-colors"
                   placeholder="متجر العطور الفاخرة"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-muted-foreground mb-2">
                   {isAr ? "رابط المتجر" : "Store URL"}
                 </label>
-                <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus-within:border-indigo-500 transition-colors">
+                <div className="flex items-center gap-2 px-4 py-3 rounded-xl bg-muted border border-input focus-within:border-ring transition-colors">
                   <input
                     value={form.subdomain}
                     onChange={(e) => update("subdomain", e.target.value)}
@@ -328,26 +328,26 @@ export default function CreatePage() {
                     minLength={3}
                     maxLength={30}
                     dir="ltr"
-                    className="flex-1 bg-transparent text-white placeholder-slate-500 focus:outline-none"
+                    className="flex-1 bg-transparent text-foreground placeholder:text-muted-foreground focus:outline-none"
                     placeholder="my-store"
                   />
-                  <span className="text-slate-400 text-sm whitespace-nowrap">.storehub.sa</span>
-                  {checking && <Loader2 className="w-4 h-4 animate-spin text-slate-400" />}
+                  <span className="text-muted-foreground text-sm whitespace-nowrap">.storehub.sa</span>
+                  {checking && <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />}
                   {!checking && subdomainAvailable === true && (
-                    <CheckCircle className="w-4 h-4 text-emerald-400" />
+                    <CheckCircle className="w-4 h-4 text-emerald-600" />
                   )}
                   {!checking && subdomainAvailable === false && (
-                    <AlertCircle className="w-4 h-4 text-red-400" />
+                    <AlertCircle className="w-4 h-4 text-destructive" />
                   )}
                 </div>
                 {subdomainAvailable === false && (
-                  <p className="text-xs text-red-400 mt-1.5 flex items-center gap-1">
+                  <p className="text-xs text-destructive mt-1.5 flex items-center gap-1">
                     <AlertCircle className="w-3 h-3" />
                     {isAr ? "هذا الرابط مستخدم" : "This URL is already taken"}
                   </p>
                 )}
                 {subdomainAvailable === true && (
-                  <p className="text-xs text-emerald-400 mt-1.5 flex items-center gap-1">
+                  <p className="text-xs text-emerald-600 mt-1.5 flex items-center gap-1">
                     <CheckCircle className="w-3 h-3" />
                     {isAr ? "الرابط متاح!" : "URL is available!"}
                   </p>
@@ -355,7 +355,7 @@ export default function CreatePage() {
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-4 py-3">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   {error}
                 </div>
@@ -378,14 +378,14 @@ export default function CreatePage() {
                 <div className="w-12 h-12 gradient-brand rounded-2xl flex items-center justify-center mx-auto mb-3">
                   <Sparkles className="w-6 h-6 text-white" />
                 </div>
-                <h2 className="text-lg font-bold text-white">
+                <h2 className="text-lg font-bold text-foreground">
                   {isAr ? "شخصية متجرك" : "Store identity"}
                 </h2>
               </div>
 
               {/* Color picker */}
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-3">
+                <label className="block text-sm font-medium text-muted-foreground mb-3">
                   {isAr ? "اللون الرئيسي" : "Primary color"}
                 </label>
                 <div className="flex items-center gap-3 flex-wrap">
@@ -395,25 +395,28 @@ export default function CreatePage() {
                       type="button"
                       onClick={() => update("primaryColor", c.value)}
                       className={`w-10 h-10 rounded-xl transition-transform hover:scale-110 ${
-                        form.primaryColor === c.value ? "ring-2 ring-white ring-offset-2 ring-offset-transparent scale-110" : ""
+                        form.primaryColor === c.value ? "ring-2 ring-foreground ring-offset-2 ring-offset-background scale-110" : ""
                       }`}
                       style={{ backgroundColor: c.value }}
                       aria-label={c.label}
                     />
                   ))}
-                  <label className="w-10 h-10 rounded-xl border border-white/20 flex items-center justify-center cursor-pointer hover:border-white/40 transition-colors overflow-hidden">
+                  <label className="w-10 h-10 rounded-xl border border-input flex items-center justify-center cursor-pointer hover:border-ring transition-colors overflow-hidden">
                     <input
                       type="color"
                       value={form.primaryColor}
                       onChange={(e) => update("primaryColor", e.target.value)}
                       className="opacity-0 absolute w-px h-px"
                     />
-                    <span className="text-xs text-slate-400">+</span>
+                    <span className="text-xs text-muted-foreground">+</span>
                   </label>
                 </div>
               </div>
 
-              {/* Preview */}
+              {/* Preview — deliberately keeps white text on the merchant's chosen
+                  color here, since this mirrors the real storefront's actual
+                  behavior (see app/store/[subdomain]/page.tsx), not a page-theme
+                  contrast issue. */}
               <div className="glass rounded-2xl p-4">
                 <div
                   className="rounded-xl p-3 mb-3 flex items-center gap-2"
@@ -427,16 +430,16 @@ export default function CreatePage() {
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   {["منتج ١", "منتج ٢", "منتج ٣"].map((p) => (
-                    <div key={p} className="bg-white/5 rounded-lg p-2 text-center">
+                    <div key={p} className="bg-muted rounded-lg p-2 text-center">
                       <div className="w-full aspect-square rounded-md mb-1" style={{ backgroundColor: form.primaryColor + "33" }} />
-                      <p className="text-xs text-slate-300">{p}</p>
+                      <p className="text-xs text-muted-foreground">{p}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               {error && (
-                <div className="flex items-center gap-2 text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+                <div className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-xl px-4 py-3">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   {error}
                 </div>
@@ -446,7 +449,7 @@ export default function CreatePage() {
                 <button
                   type="button"
                   onClick={() => setStep("info")}
-                  className="flex-1 py-3 rounded-xl glass text-slate-200 font-medium hover:bg-white/10 transition-all"
+                  className="flex-1 py-3 rounded-xl glass text-foreground font-medium hover:bg-foreground/5 transition-all"
                 >
                   {isAr ? "السابق" : "Back"}
                 </button>
@@ -470,12 +473,12 @@ export default function CreatePage() {
           {step === "done" && (
             <div className="text-center py-4">
               <div className="w-16 h-16 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <CheckCircle className="w-8 h-8 text-emerald-400" />
+                <CheckCircle className="w-8 h-8 text-emerald-600" />
               </div>
-              <h2 className="text-2xl font-black text-white mb-2">
+              <h2 className="text-2xl font-black text-foreground mb-2">
                 {isAr ? "تم إنشاء متجرك! 🎉" : "Your store is live! 🎉"}
               </h2>
-              <p className="text-slate-400 text-sm mb-8">
+              <p className="text-muted-foreground text-sm mb-8">
                 {isAr
                   ? `متجرك جاهز على ${form.subdomain}.storehub.sa`
                   : `Your store is ready at ${form.subdomain}.storehub.sa`}
@@ -493,7 +496,7 @@ export default function CreatePage() {
                   href={`https://${form.subdomain}.storehub.sa`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-3 rounded-xl glass text-slate-200 font-medium hover:bg-white/10 transition-all"
+                  className="block w-full py-3 rounded-xl glass text-foreground font-medium hover:bg-foreground/5 transition-all"
                 >
                   {isAr ? "عرض المتجر" : "View store"} ↗
                 </a>

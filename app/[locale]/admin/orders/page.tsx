@@ -65,13 +65,13 @@ export default function OrdersPage() {
   const countByStatus = (s: Status | "all") =>
     s === "all" ? orders.length : orders.filter((o) => o.status === s).length;
 
-  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 md:p-8 max-w-6xl" dir={isAr ? "rtl" : "ltr"}>
       <div className="mb-8">
-        <h1 className="text-2xl font-black text-white">{isAr ? "الطلبات" : "Orders"}</h1>
-        <p className="text-slate-400 text-sm mt-1">{orders.length} {isAr ? "طلب إجمالاً" : "total orders"}</p>
+        <h1 className="text-2xl font-black text-foreground">{isAr ? "الطلبات" : "Orders"}</h1>
+        <p className="text-muted-foreground text-sm mt-1">{orders.length} {isAr ? "طلب إجمالاً" : "total orders"}</p>
       </div>
 
       {/* Status filter tabs */}
@@ -83,11 +83,11 @@ export default function OrdersPage() {
             className={`px-3 py-1.5 rounded-xl text-xs font-medium transition-all flex items-center gap-1.5 ${
               filter === s
                 ? "gradient-brand text-white"
-                : "glass text-slate-400 hover:text-white"
+                : "glass text-muted-foreground hover:text-foreground"
             }`}
           >
             {statusLabels[s]}
-            <span className={`px-1.5 py-0.5 rounded-full text-xs ${filter === s ? "bg-white/20 text-white" : "bg-white/5 text-slate-500"}`}>
+            <span className={`px-1.5 py-0.5 rounded-full text-xs ${filter === s ? "bg-white/20 text-white" : "bg-foreground/10 text-muted-foreground"}`}>
               {countByStatus(s)}
             </span>
           </button>
@@ -97,8 +97,8 @@ export default function OrdersPage() {
       {/* Orders list */}
       {filtered.length === 0 ? (
         <div className="glass rounded-2xl p-16 text-center">
-          <ShoppingBag className="w-12 h-12 text-slate-600 mx-auto mb-4" />
-          <p className="text-slate-400">{isAr ? "لا توجد طلبات" : "No orders found"}</p>
+          <ShoppingBag className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+          <p className="text-muted-foreground">{isAr ? "لا توجد طلبات" : "No orders found"}</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -106,12 +106,12 @@ export default function OrdersPage() {
             <div key={order.id} className="glass rounded-2xl overflow-hidden">
               {/* Order header row */}
               <div
-                className="flex items-center gap-4 px-5 py-4 cursor-pointer hover:bg-white/2 transition-colors"
+                className="flex items-center gap-4 px-5 py-4 cursor-pointer hover:bg-foreground/5 transition-colors"
                 onClick={() => setExpandedId(expandedId === order.id ? null : order.id)}
               >
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <span className="text-sm font-mono font-semibold text-white">{order.order_number}</span>
+                    <span className="text-sm font-mono font-semibold text-foreground">{order.order_number}</span>
                     <span className={`px-2 py-0.5 rounded-full text-xs font-medium border ${statusColors[order.status]}`}>
                       {statusLabels[order.status]}
                     </span>
@@ -121,35 +121,35 @@ export default function OrdersPage() {
                       </span>
                     )}
                   </div>
-                  <p className="text-xs text-slate-400 mt-0.5">
+                  <p className="text-xs text-muted-foreground mt-0.5">
                     {order.customer_name} · {formatDate(order.created_at, isAr ? "ar-SA" : "en-US")}
                   </p>
                 </div>
                 <div className="text-end flex-shrink-0">
-                  <p className="text-base font-bold text-white">{formatCurrency(order.total, "SAR", isAr ? "ar-SA" : "en-US")}</p>
+                  <p className="text-base font-bold text-foreground">{formatCurrency(order.total, "SAR", isAr ? "ar-SA" : "en-US")}</p>
                 </div>
                 {expandedId === order.id ? (
-                  <ChevronUp className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  <ChevronUp className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-400 flex-shrink-0" />
+                  <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" />
                 )}
               </div>
 
               {/* Expanded details */}
               {expandedId === order.id && (
-                <div className="border-t border-white/5 px-5 py-4 space-y-4">
+                <div className="border-t border-border px-5 py-4 space-y-4">
                   {/* Customer info */}
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <p className="text-slate-500 text-xs mb-1">{isAr ? "العميل" : "Customer"}</p>
-                      <p className="text-white font-medium">{order.customer_name}</p>
-                      <p className="text-slate-400">{order.customer_email}</p>
-                      {order.customer_phone && <p className="text-slate-400">{order.customer_phone}</p>}
+                      <p className="text-muted-foreground text-xs mb-1">{isAr ? "العميل" : "Customer"}</p>
+                      <p className="text-foreground font-medium">{order.customer_name}</p>
+                      <p className="text-muted-foreground">{order.customer_email}</p>
+                      {order.customer_phone && <p className="text-muted-foreground">{order.customer_phone}</p>}
                     </div>
                     <div>
-                      <p className="text-slate-500 text-xs mb-1">{isAr ? "عنوان الشحن" : "Shipping address"}</p>
+                      <p className="text-muted-foreground text-xs mb-1">{isAr ? "عنوان الشحن" : "Shipping address"}</p>
                       {order.shipping_address && typeof order.shipping_address === "object" && (
-                        <div className="text-slate-300 text-xs space-y-0.5">
+                        <div className="text-foreground text-xs space-y-0.5">
                           {Object.entries(order.shipping_address as Record<string, string>).map(([k, v]) => (
                             <p key={k}>{v}</p>
                           ))}
@@ -159,24 +159,24 @@ export default function OrdersPage() {
                   </div>
 
                   {/* Order financials */}
-                  <div className="bg-white/3 rounded-xl p-3 text-sm space-y-1.5">
-                    <div className="flex justify-between text-slate-400">
+                  <div className="bg-muted rounded-xl p-3 text-sm space-y-1.5">
+                    <div className="flex justify-between text-muted-foreground">
                       <span>{isAr ? "المجموع الفرعي" : "Subtotal"}</span>
                       <span>{formatCurrency(order.subtotal, "SAR", isAr ? "ar-SA" : "en-US")}</span>
                     </div>
                     {order.shipping_fee > 0 && (
-                      <div className="flex justify-between text-slate-400">
+                      <div className="flex justify-between text-muted-foreground">
                         <span>{isAr ? "الشحن" : "Shipping"}</span>
                         <span>{formatCurrency(order.shipping_fee, "SAR", isAr ? "ar-SA" : "en-US")}</span>
                       </div>
                     )}
                     {order.discount > 0 && (
-                      <div className="flex justify-between text-emerald-400">
+                      <div className="flex justify-between text-emerald-600">
                         <span>{isAr ? "خصم" : "Discount"}</span>
                         <span>-{formatCurrency(order.discount, "SAR", isAr ? "ar-SA" : "en-US")}</span>
                       </div>
                     )}
-                    <div className="flex justify-between text-white font-bold pt-1 border-t border-white/5">
+                    <div className="flex justify-between text-foreground font-bold pt-1 border-t border-border">
                       <span>{isAr ? "الإجمالي" : "Total"}</span>
                       <span>{formatCurrency(order.total, "SAR", isAr ? "ar-SA" : "en-US")}</span>
                     </div>
@@ -185,14 +185,14 @@ export default function OrdersPage() {
                   {/* Notes */}
                   {order.notes && (
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">{isAr ? "ملاحظات العميل" : "Customer notes"}</p>
-                      <p className="text-sm text-slate-300 bg-white/3 rounded-xl p-3">{order.notes}</p>
+                      <p className="text-xs text-muted-foreground mb-1">{isAr ? "ملاحظات العميل" : "Customer notes"}</p>
+                      <p className="text-sm text-foreground bg-muted rounded-xl p-3">{order.notes}</p>
                     </div>
                   )}
 
                   {/* Status update */}
                   <div>
-                    <p className="text-xs text-slate-500 mb-2">{isAr ? "تحديث الحالة" : "Update status"}</p>
+                    <p className="text-xs text-muted-foreground mb-2">{isAr ? "تحديث الحالة" : "Update status"}</p>
                     <div className="flex gap-2 flex-wrap">
                       {STATUSES.map((s) => (
                         <button
@@ -202,7 +202,7 @@ export default function OrdersPage() {
                           className={`px-3 py-1.5 rounded-xl text-xs font-medium border transition-all disabled:opacity-40 ${
                             order.status === s
                               ? statusColors[s]
-                              : "border-white/10 text-slate-400 hover:border-white/20 hover:text-white"
+                              : "border-input text-muted-foreground hover:border-ring hover:text-foreground"
                           }`}
                         >
                           {statusLabels[s]}

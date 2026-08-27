@@ -114,13 +114,13 @@ export default function AnalyticsPage() {
     fontSize: "12px",
   };
 
-  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin" /></div>;
+  if (loading) return <div className="flex items-center justify-center h-screen"><div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" /></div>;
 
   return (
     <div className="p-6 md:p-8 max-w-6xl" dir={isAr ? "rtl" : "ltr"}>
       <div className="mb-8">
-        <h1 className="text-2xl font-black text-white">{isAr ? "التحليلات" : "Analytics"}</h1>
-        <p className="text-slate-400 text-sm mt-1">{isAr ? "آخر 30 يوماً" : "Last 30 days"}</p>
+        <h1 className="text-2xl font-black text-foreground">{isAr ? "التحليلات" : "Analytics"}</h1>
+        <p className="text-muted-foreground text-sm mt-1">{isAr ? "آخر 30 يوماً" : "Last 30 days"}</p>
       </div>
 
       {/* Summary */}
@@ -136,8 +136,8 @@ export default function AnalyticsPage() {
               <div className={`w-9 h-9 rounded-xl bg-gradient-to-br ${c.color} flex items-center justify-center mb-3`}>
                 <Icon className="w-4 h-4 text-white" />
               </div>
-              <p className="text-xs text-slate-400 mb-1">{c.label}</p>
-              <p className="text-xl font-black text-white">{c.value}</p>
+              <p className="text-xs text-muted-foreground mb-1">{c.label}</p>
+              <p className="text-xl font-black text-foreground">{c.value}</p>
             </div>
           );
         })}
@@ -145,12 +145,12 @@ export default function AnalyticsPage() {
 
       {/* Revenue chart */}
       <div className="glass rounded-2xl p-6 mb-6">
-        <h2 className="text-base font-semibold text-white mb-6">{isAr ? "الإيرادات اليومية" : "Daily revenue"}</h2>
+        <h2 className="text-base font-semibold text-foreground mb-6">{isAr ? "الإيرادات اليومية" : "Daily revenue"}</h2>
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={revenueData} margin={{ top: 0, right: 8, left: 0, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" />
-            <XAxis dataKey="date" tick={{ fill: "#64748b", fontSize: 11 }} axisLine={false} tickLine={false} />
-            <YAxis tick={{ fill: "#64748b", fontSize: 11 }} axisLine={false} tickLine={false} width={50} tickFormatter={(v) => `${v}`} />
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+            <XAxis dataKey="date" tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }} axisLine={false} tickLine={false} />
+            <YAxis tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }} axisLine={false} tickLine={false} width={50} tickFormatter={(v) => `${v}`} />
             <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => [formatCurrency(v, "SAR", isAr ? "ar-SA" : "en-US"), isAr ? "الإيرادات" : "Revenue"]} />
             <Line type="monotone" dataKey="revenue" stroke="#6366f1" strokeWidth={2} dot={false} activeDot={{ r: 4, fill: "#6366f1" }} />
           </LineChart>
@@ -160,12 +160,12 @@ export default function AnalyticsPage() {
       {/* Top products chart */}
       {topProducts.length > 0 && (
         <div className="glass rounded-2xl p-6">
-          <h2 className="text-base font-semibold text-white mb-6">{isAr ? "أكثر المنتجات مبيعاً" : "Top selling products"}</h2>
+          <h2 className="text-base font-semibold text-foreground mb-6">{isAr ? "أكثر المنتجات مبيعاً" : "Top selling products"}</h2>
           <ResponsiveContainer width="100%" height={200}>
             <BarChart data={topProducts} margin={{ top: 0, right: 8, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.04)" vertical={false} />
-              <XAxis dataKey="name" tick={{ fill: "#64748b", fontSize: 10 }} axisLine={false} tickLine={false} />
-              <YAxis tick={{ fill: "#64748b", fontSize: 11 }} axisLine={false} tickLine={false} width={50} />
+              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" vertical={false} />
+              <XAxis dataKey="name" tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }} axisLine={false} tickLine={false} />
+              <YAxis tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 11 }} axisLine={false} tickLine={false} width={50} />
               <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => [formatCurrency(v, "SAR", isAr ? "ar-SA" : "en-US"), isAr ? "الإيرادات" : "Revenue"]} />
               <Bar dataKey="revenue" fill="#4f46e5" radius={[6, 6, 0, 0]} />
             </BarChart>
