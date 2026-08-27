@@ -1,12 +1,8 @@
-import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import { createClient } from '@/supabase/server'
+import { requirePlatformAdmin } from '@/lib/auth/platform-admin'
 
 export default async function PlatformAdminLayout({ children }: { children: React.ReactNode }) {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user || user.email?.toLowerCase() !== process.env.PLATFORM_ADMIN_EMAIL?.toLowerCase())
-    redirect('/')
+  await requirePlatformAdmin()
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex" dir="rtl">
