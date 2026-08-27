@@ -131,11 +131,15 @@ export function SectionsDragEditor({
     setAddingType(type);
     setError(null);
     try {
+      const nextPosition =
+        sections.length > 0
+          ? Math.max(...sections.map((s) => s.position)) + 1
+          : 0;
       const created = await createSection(
         storeId,
         type,
         SECTION_REGISTRY[type].defaultConfig(),
-        sections.length
+        nextPosition
       );
       setSections((s) => {
         const next = [...s, created];
