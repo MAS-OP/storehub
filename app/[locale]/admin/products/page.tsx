@@ -65,7 +65,7 @@ export default function ProductsPage() {
   }
 
   async function handleSave() {
-    if (!storeId || !form.name || form.price < 0) return;
+    if (!storeId || !form.name || (form.price ?? 0) < 0) return;
     setSaving(true);
     if (modal === "add") {
       const { error } = await supabase.from("products").insert({ ...form, store_id: storeId });
@@ -229,7 +229,7 @@ export default function ProductsPage() {
 
               <div>
                 <label className="block text-xs font-medium text-slate-400 mb-1.5">{isAr ? "رابط الصورة الرئيسية" : "Main image URL"}</label>
-                <input value={form.images[0] ?? ""} onChange={(e) => f("images", e.target.value ? [e.target.value] : [])} dir="ltr" className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="https://..." />
+                <input value={form.images?.[0] ?? ""} onChange={(e) => f("images", e.target.value ? [e.target.value] : [])} dir="ltr" className="w-full px-3 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition-colors" placeholder="https://..." />
               </div>
 
               <div>

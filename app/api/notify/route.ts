@@ -1,4 +1,4 @@
-import { createClient } from "@/supabase/server";
+import { adminSupabase } from "@/supabase/admin";
 import { Resend } from "resend";
 import type { Database, Json } from "@/supabase/types";
 
@@ -15,10 +15,9 @@ export async function POST(request: Request) {
     const { storeId } = await request.json();
     if (!storeId) return Response.json({ error: "Missing storeId" }, { status: 400 });
 
-    const supabase = await createClient();
 
     // جلب بيانات المتجر
-    const { data } = await supabase
+    const { data } = await adminSupabase
       .from("stores")
       .select("*, integrations(*)")
       .eq("id", storeId)
@@ -29,8 +28,8 @@ export async function POST(request: Request) {
     const store = data as unknown as StoreRow & { integrations: IntegrationRow[] };
 
     const [productsRes, ordersRes] = await Promise.all([
-      supabase.from("products").select("*").eq("store_id", storeId).eq("is_active", true),
-      supabase.from("orders").select("*").eq("store_id", storeId).order("created_at", { ascending: false }).limit(100),
+      adminSupabase.from("products").select("*").eq("store_id", storeId).eq("is_active", true),
+      adminSupabase.from("orders").select("*").eq("store_id", storeId).order("created_at", { ascending: false }).limit(100),
     ]);
 
     const products = productsRes.data ?? [];
@@ -97,7 +96,8 @@ export async function POST(request: Request) {
 
     // ── حفظ الإشعارات ──
     if (notifications.length > 0) {
-      await supabase.from("notifications").insert(notifications);
+      const { error: notifyError } = await adminSupabase.from("notifications").insert(notifications);
+      if (notifyError) console.error("Notifications insert error:", notifyError);
     }
 
     // ── إرسال بريد إلكتروني إذا كان Resend مفعّلاً ──
