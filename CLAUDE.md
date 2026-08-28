@@ -46,7 +46,7 @@ When adding a route, decide which of these three trees it belongs to — they ha
 
 Three distinct, non-overlapping auth checks — don't conflate them:
 - **Merchant admin** (`app/[locale]/admin/*`): Supabase Auth session required; the layout looks up the `stores` row where `owner_id = user.id`. No store yet → redirect to `/[locale]/create`. This is the standard RLS-scoped client (`supabase/server.ts`).
-- **Platform admin** (`app/platform-admin/*`): currently just an email allowlist check (`user.email === process.env.PLATFORM_ADMIN_EMAIL`) — **not real role-based auth**. This is known-weak and flagged for a future proper fix (Supabase Auth + `role` column + RLS + middleware role check, or a stopgap password gate). Don't assume it's hardened.
+- **Platform admin** (`app/platform-admin/*`): real Supabase Auth session + a `platform_admins` allowlist table (RLS-locked, zero client-facing policies), checked via the `is_platform_admin()` SECURITY DEFINER RPC and enforced in `lib/auth/platform-admin.ts`'s `requirePlatformAdmin()`. MFA/AAL2 is **not yet enforced** — no `/platform-admin/login` or `/platform-admin/mfa-challenge` pages exist yet, so don't assume step-up auth is in place.
 - **Storefront** (`app/store/[subdomain]/*`): public, no auth; scoped entirely by `subdomain` → `store.id` lookups.
 
 ### Supabase clients (supabase/*.ts)
@@ -84,7 +84,7 @@ Tailwind v4 (CSS-first config via `@theme inline` in `app/globals.css` — no `t
 
 ## Known rough edges
 
-- `app/platform-admin` auth is an email-allowlist check, not a real session/role system — treat it as provisional if you touch it.
+- `app/platform-admin` auth uses a real session + allowlist table now, but has no MFA/step-up enforcement yet — treat privileged actions there as provisional until that lands.
 - Several admin pages (`create`, `integrations`, `notifications`) are still under active buildout — check current file contents rather than assuming completeness.
 
 ## Working Methodology & Source of Truth
@@ -99,6 +99,10 @@ Tailwind v4 (CSS-first config via `@theme inline` in `app/globals.css` — no `t
   - `<canvas>` is a replaced element — `fixed inset-0` alone does not size it; it needs explicit `w-full h-full`.
   - Scope transparency/protection layers (overlays, blockers) to the actually-affected region only — don't apply them proactively to the whole page.
   - New files need an explicit, separate delivery/pull step — never assume a new file is bundled implicitly with the delivery of another file.
+  - Very long multi-line pastes (a Python heredoc, a big `cat > file << EOF`) can silently truncate or garble in this terminal — for anything non-trivial in size, deliver it as a draggable file plus a short one-line run/move command instead of a big paste.
+  - Curly/smart quotes introduced by copy-paste around a bracket path segment like `[locale]` break both quoting (bash sees them as literal characters, not real quotes) and globbing (`[locale]` gets read as a character class) — use backslash-escaping (`app/\[locale\]/...`) instead of quote marks for any path containing `[locale]`.
+  - `tsc --noEmit` exiting 0 only proves the files currently on disk are type-correct — it does **not** prove a `mv`/edit actually landed where intended. After any move, grep the destination file for content unique to the new version before trusting it.
+  - VS Code's Problems panel can show stale diagnostics tied to a file's old name/path after it's been moved or renamed externally (via terminal) — it doesn't reflect reality until tabs are closed or the window is reloaded; trust a fresh `tsc --noEmit` run over the panel's count.
 
 ## Phase Status
 
@@ -111,6 +115,7 @@ Tailwind v4 (CSS-first config via `@theme inline` in `app/globals.css` — no `t
 | 4 — Live storefront wiring | ⏳ Not started | | |
 | — Particle background/design tokens | ✅ Exists (uncommitted) | ParticleBackground.tsx | unrelated pre-existing system, origin unconfirmed |
 | — Axon landing preview | 🔀 Isolated route only | app/[locale]/preview/axon | not a replacement for the live homepage |
+| — Onyx landing preview | 🔀 Isolated route, 2/7 sections | app/[locale]/preview/onyx, components/preview/onyx/* | hero + how-it-works built; features/ai-spotlight/pricing/testimonials/final-cta remain |
 
 **Standing rule:** at the end of every session, before finishing, update the
 table above to reflect what was actually built — mark rows done/not-done,
@@ -130,3 +135,15 @@ without being asked.
   /preview/axon was confirmed never built (real 404 from inside the
   Codespace), so there's no dead code to clean up from the earlier attempt —
   tomorrow's build starts clean, not on top of a half-built preview.
+
+## Decision log (27 Aug 2026)
+- Re-prioritized: finishing the Axon/Onyx marketing themes takes priority
+  over platform-admin MFA and store-level permissions/audit-trail work — the
+  platform hasn't launched and operational tables are still empty, so
+  security work there can wait until real stores exist.
+- Built out real platform-admin auth this session (Supabase Auth + allowlist
+  table + RPC), ahead of the 10 Aug plan — see the updated Auth &
+  authorization section above. MFA still not enforced.
+- Onyx: hero redesigned (smaller headline, hover-reveal ownership icons,
+  denser background, ar/en language switch fixed) and a how-it-works section
+  added. Which theme (Axon or Onyx) finishes first is still undecided.
