@@ -55,8 +55,19 @@ export default function CreatePage() {
 
   // Check if already logged in — skip auth step
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) setStep("info");
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      const { data: existing } = await supabase
+        .from("stores")
+        .select("id")
+        .eq("owner_id", user.id)
+        .limit(1)
+        .maybeSingle();
+      if (existing) {
+        router.push(`/${locale}/admin`);
+        return;
+      }
+      setStep("info");
     });
   }, []);
 
@@ -137,6 +148,22 @@ export default function CreatePage() {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       router.push(`/${locale}/login`);
+      return;
+    }
+
+    const { data: existingStore } = await supabase
+      .from("stores")
+      .select("id")
+      .eq("owner_id", user.id)
+      .limit(1)
+      .maybeSingle();
+    if (existingStore) {
+      setError(
+        isAr
+          ? "هذا الحساب يملك متجراً بالفعل. لا يمكن إنشاء أكثر من متجر بالبريد نفسه."
+          : "This account already owns a store. One store per email is allowed."
+      );
+      setLoading(false);
       return;
     }
 
