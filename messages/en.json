@@ -252,5 +252,35 @@
         "description": "Enable mada, Visa, and Apple Pay, and start selling instantly."
       }
     }
+  },
+  "OnyxFeatures": {
+    "eyebrow": "Features",
+    "heading": "Everything your store needs, in one place",
+    "items": {
+      "payments": {
+        "title": "Local payment methods",
+        "description": "Accept mada, Visa, Mastercard, and Apple Pay directly, with zero hassle."
+      },
+      "noFees": {
+        "title": "No monthly fees",
+        "description": "One payment, period. No subscriptions, no commission on your sales."
+      },
+      "builder": {
+        "title": "Drag-and-drop builder",
+        "description": "Arrange your storefront sections and toggle them on or off, no code required."
+      },
+      "ai": {
+        "title": "AI business assistant",
+        "description": "A business analyst that watches your sales and stock and reports back instantly."
+      },
+      "shipping": {
+        "title": "Built-in shipping",
+        "description": "Connect Aramex and SMSA and start shipping within minutes."
+      },
+      "whatsapp": {
+        "title": "WhatsApp alerts",
+        "description": "Get new-order notifications sent straight to WhatsApp."
+      }
+    }
   }
 }
