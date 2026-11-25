@@ -296,5 +296,27 @@
       "customers": "A summary of repeat customers"
     },
     "inputPlaceholder": "Ask about your store…"
+  },
+  "OnyxPricing": {
+    "eyebrow": "Pricing",
+    "heading": "One payment, yours forever",
+    "subheading": "No subscriptions, no hidden fees, no end-of-month surprises",
+    "label": "One-time payment",
+    "price": "999",
+    "currency": "SAR",
+    "oldPrice": "2,999 SAR",
+    "guarantee": "30-day money-back guarantee if you're not satisfied",
+    "features": [
+      "A complete professional online store",
+      "Orders and accounting system",
+      "Your own AI assistant",
+      "Arabic and English support (RTL)",
+      "24/7 technical support",
+      "Unlimited product management",
+      "Detailed analytics and statistics",
+      "Your own store subdomain",
+      "Free updates forever"
+    ],
+    "cta": "Get started"
   }
 }
