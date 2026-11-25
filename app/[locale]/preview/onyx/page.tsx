@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import OnyxHero from "@/components/preview/onyx/OnyxHero";
 import OnyxHowItWorks from "@/components/preview/onyx/OnyxHowItWorks";
 import OnyxFeatures from "@/components/preview/onyx/OnyxFeatures";
+import OnyxAiSpotlight from "@/components/preview/onyx/OnyxAiSpotlight";
 
 export const metadata: Metadata = {
   title: "StoreHub — Onyx theme preview",
@@ -23,6 +24,7 @@ export default function OnyxPreviewPage(): React.JSX.Element {
       <OnyxHero />
       <OnyxHowItWorks />
       <OnyxFeatures />
+      <OnyxAiSpotlight />
     </>
   );
 }

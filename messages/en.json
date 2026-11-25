@@ -282,5 +282,19 @@
         "description": "Get new-order notifications sent straight to WhatsApp."
       }
     }
+  },
+  "OnyxAiSpotlight": {
+    "eyebrow": "AI assistant",
+    "heading": "A business analyst for your store, in your language",
+    "description": "Ask about your sales, stock and customers in plain language. The assistant is built for you, the store owner, not as a chatbot for shoppers.",
+    "exampleLabel": "Illustrative example",
+    "question": "What sold best this week, and what is about to run out?",
+    "answerLead": "Here is the summary:",
+    "points": {
+      "sales": "Products ranked by sales",
+      "stock": "Alerts for items running low",
+      "customers": "A summary of repeat customers"
+    },
+    "inputPlaceholder": "Ask about your store…"
   }
 }
