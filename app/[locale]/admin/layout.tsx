@@ -1,6 +1,7 @@
 import { createClient } from "@/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
+import LocaleSwitcher from "@/components/admin/LocaleSwitcher";
 import {
   Store, LayoutDashboard, Package, ShoppingBag,
   BarChart3, Calculator, Settings, Bot,
@@ -105,6 +106,7 @@ export default async function AdminLayout({ children, params }: Props) {
 
         {/* تذييل */}
         <div className="p-3 border-t border-border space-y-0.5">
+          <LocaleSwitcher locale={locale} />
           <a
             href={`https://${store.subdomain}.storehub.sa`}
             target="_blank"
