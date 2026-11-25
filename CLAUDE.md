@@ -67,7 +67,7 @@ Storefronts are composed of ordered, toggleable "sections" (hero banner, promo c
 - `lib/sections/queries.ts` — all CRUD against `store_sections` (`getPublicSections` filters `is_active`; `getOwnerSections` doesn't; plus create/update/toggle/delete/reorder). Section `config` is cast through `Json` on the way in/out.
 - `components/sections/*.tsx` — one renderer component per `SectionType`, consuming its typed config.
 
-This system is mid-buildout: a drag-and-drop admin editor for reordering/configuring sections is the active next phase; only a subset of section types have renderer components so far.
+This system is mid-buildout: the drag-and-drop admin editor (phases 3 and 3.5) is complete; the next official phase is Phase 4 (live storefront wiring); only a subset of section types have renderer components so far.
 
 ### Styling
 
@@ -115,7 +115,7 @@ Tailwind v4 (CSS-first config via `@theme inline` in `app/globals.css` — no `t
 | 4 — Live storefront wiring | ⏳ Not started | | |
 | — Particle background/design tokens | ✅ Exists (uncommitted) | ParticleBackground.tsx | unrelated pre-existing system, origin unconfirmed |
 | — Axon landing preview | 🔀 Isolated route only | app/[locale]/preview/axon | not a replacement for the live homepage |
-| — Onyx landing preview | 🔀 Isolated route, 2/7 sections | app/[locale]/preview/onyx, components/preview/onyx/* | hero + how-it-works built; features/ai-spotlight/pricing/testimonials/final-cta remain |
+| — Onyx landing preview | 🔀 Isolated route, 4/7 sections | app/[locale]/preview/onyx, components/preview/onyx/* | hero + how-it-works + features + ai-spotlight built; pricing/testimonials/final-cta remain |
 
 **Standing rule:** at the end of every session, before finishing, update the
 table above to reflect what was actually built — mark rows done/not-done,
@@ -147,3 +147,10 @@ without being asked.
 - Onyx: hero redesigned (smaller headline, hover-reveal ownership icons,
   denser background, ar/en language switch fixed) and a how-it-works section
   added. Which theme (Axon or Onyx) finishes first is still undecided.
+
+## Rules and lessons added 25 Nov 2026
+- **One store per owner.** Enforced twice: the `/create` page checks for an existing store (redirects a logged-in owner to `/admin`, and blocks insert with a notice), and the database has a unique constraint `stores_owner_id_key` on `stores(owner_id)` (migration `20261125120000_stores_one_per_owner.sql`). Admin pages rely on `.single()` per owner, so several stores per owner break them (406 and empty sections).
+- **After a Codespace rebuild**, git-ignored files vanish: recreate `.env.local` (7 variables: Supabase URL, publishable key as `NEXT_PUBLIC_SUPABASE_ANON_KEY`, secret key as `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_ROOT_DOMAIN`, `PLATFORM_ADMIN_EMAIL`, `RESEND_API_KEY`, `MOYASAR_SECRET_KEY`) and re-run `pnpm exec supabase login` then `link --project-ref udbknwlpxbszgmlfvjvg`. Use `pnpm exec supabase`, not `pnpx` (pnpx fetches a different CLI version and may target a local DB).
+- Supabase legacy API keys are retired in early 2027; the project already uses `sb_publishable_` / `sb_secret_` keys. Never paste secret keys into chats.
+- In the terminal, escape bracket paths with backslashes: `app/\[locale\]/...`.
+- Do not commit regenerated `supabase/types.ts` when the diff is only generator noise (parentheses, PostgrestVersion).
